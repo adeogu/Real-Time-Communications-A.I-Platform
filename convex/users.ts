@@ -59,7 +59,6 @@ export const setUserOnline = internalMutation({
 
 export const setUserOffline = internalMutation({
   args: { tokenIdentifier: v.string() },
-  //passed token identifier and based on that we pass the user to the database
   handler: async (ctx, args) => {
     const user = await ctx.db
       .query("users")
@@ -85,10 +84,9 @@ export const getUsers = query({
     }
 
     const users = await ctx.db.query("users").collect();
-    return users;
-    // .filter(
-    //   (user) => user.tokenIdentifier !== identity.tokenIdentifier
-    //  );
+    return users.filter(
+      (user) => user.tokenIdentifier !== identity.tokenIdentifier
+    );
   },
 });
 

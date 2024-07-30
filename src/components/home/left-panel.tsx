@@ -7,11 +7,20 @@ import Conversation from "./conversation";
 import { conversations } from "@/dummy-data/db";
 import {UserButton, SignedOut } from '@clerk/nextjs'
 import { SignedIn, SignOutButton, SignInButton} from "@clerk/clerk-react";
+import UserListDialog from "./user-list-dialogue";
+import { useConvexAuth, useQuery } from "convex/react";
+
+
+
+
 
 
 
 
 const LeftPanel = () => {
+	const { isAuthenticated } = useConvexAuth();
+	console.log(isAuthenticated);
+
 
 	return (
 		<div className='w-1/4 border-gray-600 border-r'>
@@ -20,19 +29,15 @@ const LeftPanel = () => {
 				<div className='flex justify-between bg-gray-primary p-3 items-center'>
 
 					<UserButton />
-					{/* <SignedIn>
-						<SignOutButton />
-					</SignedIn>
 
-					<SignedOut>
-						<SignInButton/>
-					</SignedOut>
-				 */}
 				
 					<div className='flex items-center gap-3'>
-						<MessageSquareDiff size={20} /> {/* TODO: This line will be replaced with <UserListDialog /> */}
+						,
+						{isAuthenticated && <UserListDialog/>}
+
 						<ThemeSwitch />
 					</div>
+
 				</div>
 				<div className='p-3 flex items-center'>
 					{/* Search */}
@@ -74,3 +79,5 @@ const LeftPanel = () => {
 	);
 };
 export default LeftPanel;
+
+
