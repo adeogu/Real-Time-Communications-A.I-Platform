@@ -70,13 +70,13 @@ const UserListDialog = () => {
         }else {
             const postUrl = await generateUploadUrl();
             const result = await fetch(postUrl, {
-                method: "POST",
-                headers: {" Content-Type": selectedImage?.type!},
-
-                body: selectedImage,
-
-            })
-
+              method: "POST",
+              headers: { "Content-Type": selectedImage?.type! },
+              body: selectedImage,
+            });
+            
+            
+        
             const {storageId} = await result.json();
             conversationId = await createConversation({
                 participants: [...selectedUsers, me?._id!],
