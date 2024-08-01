@@ -13,11 +13,11 @@ const MessageContainer = () => {
 	 const me = useQuery(api.users.getMe);
 	const lastMessageRef = useRef<HTMLDivElement>(null);
 
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-	// 	}, 100);
-	// }, [messages]);
+	useEffect(() => {
+		setTimeout(() => {
+			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
+	}, [messages]);
 
 	console.log(messages);
 	return (
